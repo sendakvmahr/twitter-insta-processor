@@ -1,10 +1,4 @@
 """
-if there's something in current
-	that's your working photo, pull desc and work on it
-else: 
-	pick something random from archive, pull desc, and process it
-
-min of 1080 width for insta, 500 for twitter
 	# dunno how to handle animated gifs yet
 	create
 	jpg for insta, png for twitter
@@ -17,3 +11,11 @@ min of 1080 width for insta, 500 for twitter
 
 	input to close
 """
+
+import os 
+import modules.process_images
+import modules.setup_posts
+
+image_path, image = modules.process_images.get_working_file()
+modules.process_images.save_images(image_path, image)
+
