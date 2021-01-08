@@ -12,6 +12,7 @@ def get_working_file():
 	path = os.path.join(os.getcwd(), config.current_dir)
 	images = _get_dir_files(path)
 	if len(images) == 0:
+	#if True:
 		path = os.path.join(os.getcwd(), config.queue_dir)
 		images = _get_dir_files(path)
 	image = random.choice(images)
@@ -41,7 +42,8 @@ def save_images(image_path, image):
 	twitter_img = source_img.copy()
 	twitter_img = twitter_img.resize(_get_dimensions(source_img, "twitter"), 
 		Image.NEAREST)
-	twitter_img.save(os.path.join(working_dir, image))
+	twitter_img_name = os.path.join(working_dir, image)
+	twitter_img.save(twitter_img_name)
 
 	insta_img = source_img.copy()
 	insta_img = insta_img.resize(_get_dimensions(source_img, "instagram"), 
@@ -49,6 +51,7 @@ def save_images(image_path, image):
 	insta_img = insta_img.convert("RGB")
 	insta_image_name = os.path.join(working_dir, image.split(".")[0] + ".jpg")
 	insta_img.save(insta_image_name, quality=100, subsampling=0)
+	return twitter_img_name, insta_image_name
 
 def _get_dir_files(dir_):
 	"""lists gifs and pngs in dir. I'm never saving in other formats"""
